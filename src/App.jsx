@@ -1,4 +1,4 @@
-import { TasksProvider, ThemeProvider } from './providers'
+import { TasksProvider, ThemeProvider } from './contexts'
 
 import { AppLayout } from '@/layouts'
 

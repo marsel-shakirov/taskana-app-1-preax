@@ -1,4 +1,4 @@
-import { TasksContext } from '@/contexts'
+import { TasksContext } from './TasksContext.jsx'
 
 import { useContext } from 'react'
 

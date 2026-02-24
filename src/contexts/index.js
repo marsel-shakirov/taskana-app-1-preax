@@ -1,3 +1,7 @@
-export { TasksContext } from './TasksContext.jsx'
+export { TasksProvider } from './tasksProvider/TasksProvider.jsx'
 
-export { ThemeContext } from './ThemeContext.jsx'
+export { useTasks } from './tasksProvider/UseTasks.jsx'
+
+export { ThemeProvider } from './themeProvider/ThemeProvider.jsx'
+
+export { useTheme } from './themeProvider/UseTheme.jsx'

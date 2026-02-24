@@ -4,6 +4,8 @@ export { NavBar } from './navBar/NavBar'
 
 export { SideBar } from './sideBar/SideBar'
 
+export { ThemeSwitcher } from './themeSwitcher/ThemeSwitcher'
+
 export { TaskList } from './taskList/TaskList'
 
 export { Footer } from './footer/Footer'

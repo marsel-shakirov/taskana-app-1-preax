@@ -3,15 +3,16 @@
 	display: flex;
 	justify-content: end;
 	align-items: center;
-	border-radius: 7px;
+	outline: 2px solid transparent;
+	outline-offset: 6px;
+	border-radius: 5px;
 	min-width: 126px;
 	height: 40px;
 	color: var(--color-neutral-baseWhite);
 	text-decoration: none;
 
 	&:focus-visible {
-		outline: 2px solid var(--color-neutral-baseWhite);
-		outline-offset: 6px;
+		outline-color: var(--color-neutral-baseWhite);
 	}
 }
 

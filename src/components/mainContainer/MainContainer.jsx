@@ -1,4 +1,4 @@
-import { useTasks } from '@/hooks/contexts'
+import { useTasks } from '@/contexts'
 
 import { TaskList, TaskOrganizationStatus } from '@/components'
 

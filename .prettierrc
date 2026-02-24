@@ -13,12 +13,14 @@
 	],
 	"importOrder": [
 		"^[react]",
+		"^./contexts",
 		"^./hooks",
 		"^./utils",
-		"^~/icons",
+		"^./constants",
 		"^@/pages",
 		"^@/layouts",
 		"^@/components",
+		"^~/icons",
 		"^@/assets",
 		".svg$",
 		".css$"

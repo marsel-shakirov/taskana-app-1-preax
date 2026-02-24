@@ -1,4 +1,4 @@
-import { ThemeContext } from '@/contexts'
+import { ThemeContext } from './ThemeContext.jsx'
 
 import { useEffect, useState } from 'react'
 

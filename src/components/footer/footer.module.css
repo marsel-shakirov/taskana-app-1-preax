@@ -1,8 +1,6 @@
 .footer {
-	margin-inline: auto;
 	padding-inline: var(--padding-md);
 	padding-block: var(--padding-sm);
-	max-width: 996px;
 	text-align: center;
 }
 
@@ -12,13 +10,14 @@
 }
 
 .link {
+	outline: 2px solid transparent;
+	outline-offset: 3px;
 	border-radius: 4px;
 	color: var(--color-neutral-600);
 	text-transform: uppercase;
 
 	&:focus-visible {
-		outline: 2px solid var(--color-neutral-900);
-		outline-offset: 3px;
+		outline-color: var(--color-neutral-900);
 		color: var(--color-neutral-800);
 	}
 

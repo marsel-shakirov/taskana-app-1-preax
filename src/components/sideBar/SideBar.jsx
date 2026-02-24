@@ -1,6 +1,6 @@
 import { Statistic } from '../statistic/Statistic'
 
-import { useTasks } from '@/hooks/contexts/useTasks.jsx'
+import { useTasks } from '@/contexts'
 
 import { clsx } from '@/utils'
 

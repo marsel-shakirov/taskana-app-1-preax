@@ -1,6 +1,6 @@
-import { ICONS } from '@/constants'
+import { useTheme } from '@/contexts'
 
-import { useTheme } from '@/hooks/contexts'
+import { ICONS } from '@/constants'
 
 import { Button } from '@/components'
 

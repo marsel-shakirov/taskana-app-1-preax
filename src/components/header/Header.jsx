@@ -1,11 +1,10 @@
-import { ThemeSwitcher } from '../themeSwitcher/ThemeSwitcher'
-import { ICONS } from '@/constants'
-
 import { useState } from 'react'
 
-import { useTasks } from '@/hooks/contexts/useTasks.jsx'
+import { useTasks } from '@/contexts'
 
-import { Button, Logo } from '@/components'
+import { ICONS } from '@/constants'
+
+import { Button, Logo, ThemeSwitcher } from '@/components'
 
 import styles from './header.module.css'
 
