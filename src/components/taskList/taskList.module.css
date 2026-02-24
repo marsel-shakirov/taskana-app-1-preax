@@ -7,13 +7,14 @@
 }
 
 .taskItem {
+	outline: 2px solid transparent;
 	border-radius: 8px;
 	padding-block: var(--padding-xxs);
 	padding-right: var(--padding-xxs);
 	padding-left: var(--padding-sm);
 
 	&:focus-visible {
-		outline: 2px solid var(--color-neutral-900);
+		outline-color: var(--color-neutral-900);
 		box-shadow: var(--box-shadow-sm);
 	}
 

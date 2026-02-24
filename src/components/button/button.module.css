@@ -1,5 +1,7 @@
 .mainButton {
 	cursor: pointer;
+	outline: 2px solid transparent;
+	outline-offset: 2px;
 	border: none;
 	border-radius: var(--border-radius-base);
 
@@ -16,8 +18,7 @@
 	column-gap: 4px;
 	justify-content: center;
 	align-items: center;
-	outline: 2px solid transparent;
-	outline-offset: 2px;
+
 	box-shadow: var(--box-shadow-base);
 	background-color: transparent;
 	padding: 4px;
@@ -39,8 +40,7 @@
 	column-gap: var(--gap-xs);
 	justify-content: center;
 	align-items: center;
-	outline: 2px solid transparent;
-	outline-offset: 2px;
+
 	box-shadow: var(--box-shadow-base);
 	background-color: var(--color-primary-base400);
 	padding-right: var(--padding-sm);
@@ -104,12 +104,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 	background-color: transparent;
 	padding: var(--padding-xxs);
 
 	&:focus-visible {
-		outline: 2px solid var(--color-neutral-900);
-		outline-offset: 2px;
+		outline-color: var(--color-neutral-900);
 		box-shadow:
 			0 0 0 2px var(--color-neutral-100),
 			var(--box-shadow-smHover);
@@ -184,8 +184,7 @@
 	}
 
 	&:focus-visible {
-		outline: 2px solid var(--color-neutral-900);
-		outline-offset: 2px;
+		outline-color: var(--color-neutral-900);
 		box-shadow:
 			0 0 0 2px var(--color-neutral-100),
 			var(--box-shadow-baseHover);

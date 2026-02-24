@@ -1,0 +1,69 @@
+.editorInput {
+	display: flex;
+	position: sticky;
+	row-gap: var(--gap-xmd);
+	flex-direction: column;
+	inset: 0;
+	background-color: var(--color-neutral-100);
+	padding-inline: var(--padding-md);
+	padding-block: var(--padding-md);
+
+	.inputHeading {
+		color: var(--color-neutral-800);
+		font-weight: 700;
+		font-size: 32px;
+		line-height: 1.25;
+	}
+}
+
+.inputInner {
+	display: flex;
+	position: relative;
+	row-gap: 12px;
+	flex-direction: column;
+
+	.inputTitle {
+		font-weight: 700;
+		font-size: var(--font-size-md);
+		line-height: 1.33;
+		&::after {
+			padding-left: 4px;
+			content: '*';
+			color: var(--color-primary-400);
+			font-weight: 400;
+		}
+	}
+
+	.inputLabel {
+		display: flex;
+
+		.input {
+			flex-grow: 1;
+			cursor: pointer;
+			outline: none;
+			border: 1px solid var(--color-neutral-400);
+			border-radius: var(--border-radius-base);
+			padding-right: 48px;
+			padding-block: var(--padding-sm);
+			padding-left: var(--padding-sm);
+			color: var(--color-neutral-800);
+			font-size: 18px;
+			line-height: 1.2;
+
+			&:focus-visible {
+				outline: 2px solid var(--color-neutral-800);
+				border-color: transparent;
+			}
+
+			&.closeHidden ~ button {
+				visibility: visible;
+			}
+
+			@media (any-hover: hover) {
+				&:not(:focus-visible)&:hover {
+					border-color: var(--color-neutral-600);
+				}
+			}
+		}
+	}
+}

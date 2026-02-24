@@ -23,3 +23,7 @@ export { TaskOrganizationStatus } from './taskOrganizationStatus/TaskOrganizatio
 export { Icon } from './icon/Icon'
 
 export { TaskEditor } from './taskEditor/TaskEditor.jsx'
+
+export { PrioritySelector } from './prioritySelector/PrioritySelector.jsx'
+
+export { EditorInput } from './editorInput/EditorInput.jsx'

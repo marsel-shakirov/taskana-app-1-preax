@@ -4,13 +4,9 @@ import { useTasks } from '@/contexts'
 
 import { clsx, generateId } from '@/utils'
 
-import { ICONS } from '@/constants'
-
-import { Button } from '@/components'
+import { Button, EditorInput, PrioritySelector } from '@/components'
 
 import styles from './TaskEditor.module.css'
-
-const PRIORITY_ICONS = [ICONS.MINUS, ICONS.CHEVRON, ICONS.ARROW]
 
 export const TaskEditor = () => {
 	const { isEditorTaskOpen, setIsEditorTaskOpen, tasks, setTasks } = useTasks()
@@ -86,59 +82,21 @@ export const TaskEditor = () => {
 				taskEditorOpen: isEditorTaskOpen,
 			})}
 		>
-			<div className={styles.taskEditorInner}>
-				<div className={styles.taskHeader}>
-					<h2 className={styles.taskHeading}>Создание задачи</h2>
-					<form id={formId} action="" className={styles.formEditor}>
-						<span className={styles.formEditorHeading}>Название</span>
-						<label className={styles.formEditorLabel}>
-							<span className="visually-hidden">Название задачи</span>
-							<input
-								disabled={!isEditorTaskOpen}
-								ref={inputRef}
-								onChange={handleFormChange}
-								name="title"
-								placeholder="Название задачи"
-								type="text"
-								value={inputFormValue}
-								className={clsx(styles, 'formEditorInput', {
-									closeHidden: inputFormValue,
-								})}
-							/>
-							<Button
-								onClick={handleFormReset}
-								type="button"
-								icons={[{ name: ICONS.DELETE }]}
-								title="Очистить поле"
-								titleHidden={true}
-								classes={['resetFormInput']}
-							/>
-						</label>
-					</form>
-				</div>
-				<div className={styles.taskPriority}>
-					<div className={styles.taskPriorityInner}>
-						<h2 className={styles.priorityHeading}>Приоритет</h2>
-						{PRIORITY_ICONS.map((element, index) => {
-							return (
-								<Button
-									isDisabled={!isEditorTaskOpen}
-									key={`${element}_${index}`}
-									onClick={() => handlePriorityChange(index)}
-									icons={[{ name: element }]}
-									title={`Поставить приоритет задачи на ${index}`}
-									titleHidden={true}
-									classes={[
-										'priorityButton',
-										`priority${element}`,
-										priorityActive === index ? 'active' : '',
-									]}
-								/>
-							)
-						})}
-					</div>
-				</div>
-			</div>
+			<form id={formId} action="" className={styles.taskEditorForm}>
+				<EditorInput
+					formId={formId}
+					isEditorTaskOpen={isEditorTaskOpen}
+					inputRef={inputRef}
+					onChange={handleFormChange}
+					onClick={handleFormReset}
+					value={inputFormValue}
+				/>
+				<PrioritySelector
+					isEditorTaskOpen={isEditorTaskOpen}
+					onClick={handlePriorityChange}
+					priorityActive={priorityActive}
+				/>
+			</form>
 			<div className={styles.taskFooter}>
 				<Button
 					isLoading={pendingAction === 'create'}

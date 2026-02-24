@@ -1,0 +1,22 @@
+.priority {
+	display: flex;
+	column-gap: var(--gap-sm);
+	row-gap: var(--gap-xmd);
+	flex-direction: column;
+	padding-top: 4px;
+	padding-inline: var(--padding-md);
+	padding-bottom: var(--padding-sm);
+
+	.priorityInner {
+		display: flex;
+		column-gap: var(--gap-xs);
+		align-items: center;
+	}
+
+	.priorityHeading {
+		padding-right: var(--padding-xxs);
+		color: var(--color-neutral-800);
+		font-size: var(--font-size-md);
+		line-height: 1.33;
+	}
+}
