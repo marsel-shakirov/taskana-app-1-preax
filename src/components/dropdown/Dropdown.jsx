@@ -1,6 +1,11 @@
-import { useRef, useState } from 'react'
+// import { useTasks } from '@/contexts'
+import { DROPDOWN_ICONS } from '@/mock/data'
 
-import { clsx } from '@/utils'
+import { useEffect, useRef, useState } from 'react'
+
+import { useTasks } from '@/contexts'
+
+import { clsx, sortItems } from '@/utils'
 
 import { ICONS } from '@/constants'
 
@@ -8,41 +13,67 @@ import { Button, Icon } from '@/components'
 
 import styles from './Dropdown.module.css'
 
-const DROPDOWN_ICONS = [
-	{ name: ICONS.PRIORITY_DOWN, title: 'Приоритету' },
-	{ name: ICONS.PRIORITY_TOP, title: 'Приоритету' },
-	{ name: ICONS.ALPHABET_DOWN, title: 'Алфавиту' },
-	{ name: ICONS.ALPHABET_TOP, title: 'Алфавиту' },
-	{ name: ICONS.NUMBER_DOWN, title: 'Дате создания' },
-	{ name: ICONS.NUMBER_TOP, title: 'Дате создания' },
-	{ name: ICONS.UPDATE_DOWN, title: 'Дате обновления' },
-	{ name: ICONS.UPDATE_TOP, title: 'Дате обновления' },
-]
-
 export const Dropdown = () => {
 	const [filterSelected, setFilterSelected] = useState(4)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
+	const [dialogButtonTitle, setDialogButtonTitle] = useState(
+		DROPDOWN_ICONS[filterSelected].title
+	)
+	const { tasks, setTasks } = useTasks()
+
 	const dialogRef = useRef(null)
 
+	console.log(tasks)
+
+	const openDialog = () => {
+		dialogRef.current.classList.add(styles.openDialog)
+		dialogRef.current?.show()
+		setIsDialogOpen(true)
+	}
+
+	const closeDialog = () => {
+		dialogRef.current.classList.remove(styles.openDialog)
+		setTimeout(() => {
+			setIsDialogOpen(false)
+			dialogRef.current.close()
+		}, 200)
+	}
+
 	const handleFilterSelect = (index) => {
+		const tasksFiltered = sortItems(tasks, index, DROPDOWN_ICONS)
+
+		setDialogButtonTitle(DROPDOWN_ICONS[index].title)
+		setTasks(tasksFiltered)
 		setFilterSelected(index)
+		closeDialog()
 	}
 
 	const handleShowDialog = () => {
-		if (dialogRef.current.open) {
-			dialogRef.current.close()
-			setIsDialogOpen(false)
+		if (isDialogOpen) {
+			closeDialog()
 		} else {
-			dialogRef.current.show()
-			setIsDialogOpen(true)
+			openDialog()
 		}
 	}
+
+	useEffect(() => {
+		if (!isDialogOpen) return
+
+		const handleKeyDown = (event) => {
+			if (event.key === 'Escape') {
+				closeDialog()
+			}
+		}
+
+		document.addEventListener('keydown', handleKeyDown)
+		return () => document.removeEventListener('keydown', handleKeyDown)
+	}, [isDialogOpen, filterSelected])
 
 	return (
 		<div className={clsx(styles, 'dropdown', { open: isDialogOpen })}>
 			<Button
-				icons={[{ name: ICONS.NUMBER_DOWN }, { name: ICONS.CHEVRON_DOWN }]}
-				title="По дате создания"
+				icons={[{ name: ICONS.CREATE_DOWN }, { name: ICONS.CHEVRON_DOWN }]}
+				title={`По ${dialogButtonTitle.toLowerCase()}`}
 				classes={['dialogButton']}
 				onClick={handleShowDialog}
 			/>

@@ -1,4 +1,4 @@
-export const NumberDownIcon = ({ size, color, ...props }) => {
+export const CreateDownIcon = ({ size, color, ...props }) => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

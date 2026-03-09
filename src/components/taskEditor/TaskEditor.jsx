@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 
 import { useTasks } from '@/contexts'
 
-import { clsx, generateId } from '@/utils'
+import { clsx, createTask, generateId } from '@/utils'
 
 import { Button, EditorInput, PrioritySelector } from '@/components'
 
@@ -18,17 +18,6 @@ export const TaskEditor = () => {
 	const [pendingAction, setPendingAction] = useState(null)
 
 	const formId = useId()
-
-	const createTask = () => {
-		const date = new Date()
-		return {
-			id: generateId(),
-			title: inputFormValue,
-			priority: priorityActive,
-			createAt: date.toISOString(),
-			updateAt: date.toISOString(),
-		}
-	}
 
 	const handleFormChange = (event) => {
 		const value = event.target.value
@@ -62,7 +51,10 @@ export const TaskEditor = () => {
 		event.preventDefault()
 		setPendingAction('create')
 		setTimeout(() => {
-			setTasks([...tasks, createTask()].reverse())
+			setTasks([
+				createTask(generateId, inputFormValue, priorityActive),
+				...tasks,
+			])
 			setPendingAction(null)
 			setIsEditorTaskOpen(false)
 		}, 1000)

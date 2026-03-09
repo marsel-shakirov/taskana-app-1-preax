@@ -1,8 +1,6 @@
-import { Dropdown } from '../dropdown/Dropdown'
-
 import { useTasks } from '@/contexts'
 
-import { TaskList, TaskOrganizationStatus } from '@/components'
+import { Dropdown, TaskList, TaskOrganizationStatus } from '@/components'
 
 import styles from './MainContainer.module.css'
 

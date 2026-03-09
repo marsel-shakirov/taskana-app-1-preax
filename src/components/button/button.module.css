@@ -225,15 +225,15 @@
 }
 
 .dialogButton {
-	display: flex;
+	display: inline-flex;
 	column-gap: var(--gap-xs);
 	justify-content: center;
 	align-items: center;
+	align-self: flex-end;
 	box-shadow: var(--box-shadow-sm);
 	background-color: var(--color-neutral-200);
 	padding-inline: var(--padding-xs) var(--padding-xxs);
 	padding-block: var(--padding-xxs);
-	min-width: var(--min-dropdownWidth);
 	color: inherit;
 	font-weight: 600;
 

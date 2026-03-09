@@ -1,4 +1,4 @@
-export const NumberTopIcon = ({ size, color, ...props }) => {
+export const CreateTopIcon = ({ size, color, ...props }) => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

@@ -19,8 +19,8 @@ export const ICONS = {
 	TRASH: 'TrashIcon',
 	PRIORITY_TOP: 'PriorityTopIcon',
 	PRIORITY_DOWN: 'PriorityDownIcon',
-	NUMBER_TOP: 'NumberTopIcon',
-	NUMBER_DOWN: 'NumberDownIcon',
+	CREATE_TOP: 'CreateTopIcon',
+	CREATE_DOWN: 'CreateDownIcon',
 	EDIT: 'EditIcon',
 	CHECK: 'CheckIcon',
 }
