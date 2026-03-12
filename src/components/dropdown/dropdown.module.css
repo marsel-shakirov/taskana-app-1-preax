@@ -63,24 +63,4 @@
 	flex-direction: column;
 	padding-top: 4px;
 	text-decoration: none;
-
-	.dropdownItem {
-		display: flex;
-		column-gap: var(--gap-xs);
-		cursor: pointer;
-
-		&:is(.selected) button svg:last-of-type {
-			opacity: 1;
-		}
-
-		& button svg:last-of-type {
-			opacity: 0;
-		}
-
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: var(--color-neutral-200);
-			}
-		}
-	}
 }

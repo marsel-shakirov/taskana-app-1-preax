@@ -2,20 +2,23 @@ import { useEffect, useId, useRef, useState } from 'react'
 
 import { useTasks } from '@/contexts'
 
-import { clsx, createTask, generateId } from '@/utils'
+import { useAutoFocus, useTaskEditorActions } from '@/hooks'
+
+import { clsx } from '@/utils'
 
 import { Button, EditorInput, PrioritySelector } from '@/components'
 
 import styles from './TaskEditor.module.css'
 
 export const TaskEditor = () => {
-	const { isEditorTaskOpen, setIsEditorTaskOpen, tasks, setTasks } = useTasks()
+	const { isEditorTaskOpen } = useTasks()
+	const { pendingAction, createTaskWithDelay, closeEditorWithDelay } =
+		useTaskEditorActions(1000)
 
 	const inputRef = useRef(null)
 
 	const [inputFormValue, setInputFormValue] = useState('')
 	const [priorityActive, setPriorityActive] = useState(0)
-	const [pendingAction, setPendingAction] = useState(null)
 
 	const formId = useId()
 
@@ -39,33 +42,23 @@ export const TaskEditor = () => {
 		setPriorityActive(index)
 	}
 
-	const handleCloseTaskEditor = () => {
-		setPendingAction('close')
-		setTimeout(() => {
-			setPendingAction(null)
-			setIsEditorTaskOpen(false)
-		}, 1000)
+	const handleCloseTaskEditor = (event) => {
+		event.preventDefault()
+		closeEditorWithDelay()
 	}
 
 	const handleCreateTasks = (event) => {
 		event.preventDefault()
-		setPendingAction('create')
-		setTimeout(() => {
-			setTasks([
-				createTask(generateId, inputFormValue, priorityActive),
-				...tasks,
-			])
-			setPendingAction(null)
-			setIsEditorTaskOpen(false)
-		}, 1000)
+		createTaskWithDelay(inputFormValue, priorityActive)
 	}
 
+	useAutoFocus(inputRef, isEditorTaskOpen, 400)
+
 	useEffect(() => {
-		if (isEditorTaskOpen && inputRef.current) {
-			setTimeout(() => inputRef.current.focus(), 400)
+		if (isEditorTaskOpen) {
+			setPriorityActive(0)
+			setInputFormValue('')
 		}
-		setPriorityActive(0)
-		setInputFormValue('')
 	}, [isEditorTaskOpen])
 
 	return (

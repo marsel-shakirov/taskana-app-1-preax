@@ -250,6 +250,12 @@
 			box-shadow: var(--box-shadow-smHover);
 			color: var(--color-neutral-800);
 		}
+
+		&:is(:focus-visible):hover {
+			box-shadow:
+				0 0 0 2px var(--color-neutral-100),
+				var(--box-shadow-smHover);
+		}
 	}
 }
 
@@ -268,5 +274,46 @@
 	&:focus-visible {
 		outline-color: var(--color-neutral-900);
 		background-color: var(--color-neutral-200);
+	}
+}
+
+.buttonEditTask {
+	--width: 40px;
+	background-color: transparent;
+	padding: var(--padding-xxs);
+	width: var(--width);
+	height: var(--width);
+	color: var(--color-neutral-600);
+
+	&:focus-visible {
+		outline-color: var(--color-neutral-900);
+		box-shadow:
+			0 0 0 2px var(--color-neutral-100),
+			var(--box-shadow-smHover);
+		background-color: var(--color-neutral-300);
+		color: var(--color-neutral-800);
+	}
+
+	&:active,
+	.loadingButton {
+		background-color: var(--color--neutral-100);
+	}
+
+	&:not(&.loadingButton):disabled {
+		opacity: 0.5;
+	}
+
+	@media (any-hover: hover) {
+		&:not(:active, .loadingButton):hover {
+			box-shadow: var(--box-shadow-smHover);
+			background-color: var(--color-neutral-300);
+			color: var(--color-neutral-800);
+		}
+
+		&:is(:focus-visible):hover {
+			box-shadow:
+				0 0 0 2px var(--color-neutral-100),
+				var(--box-shadow-smHover);
+		}
 	}
 }

@@ -9,51 +9,42 @@ import { clsx, sortItems } from '@/utils'
 
 import { ICONS } from '@/constants'
 
-import { Button, Icon } from '@/components'
+import { Button, DropdownItem, Icon } from '@/components'
 
 import styles from './Dropdown.module.css'
 
 export const Dropdown = () => {
 	const [filterSelected, setFilterSelected] = useState(4)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
-	const [dialogButtonTitle, setDialogButtonTitle] = useState(
-		DROPDOWN_ICONS[filterSelected].title
-	)
+
 	const { tasks, setTasks } = useTasks()
 
 	const dialogRef = useRef(null)
 
-	console.log(tasks)
+	const dialogButtonTitle = DROPDOWN_ICONS[filterSelected].title
+
+	const closeDialog = () => {
+		setIsDialogOpen(false)
+		setTimeout(() => dialogRef.current.close(), 200)
+	}
 
 	const openDialog = () => {
-		dialogRef.current.classList.add(styles.openDialog)
-		dialogRef.current?.show()
+		dialogRef.current.show()
 		setIsDialogOpen(true)
 	}
 
-	const closeDialog = () => {
-		dialogRef.current.classList.remove(styles.openDialog)
-		setTimeout(() => {
-			setIsDialogOpen(false)
-			dialogRef.current.close()
-		}, 200)
+	const handleToggleDialog = () => {
+		if (!dialogRef.current) return
+
+		isDialogOpen ? closeDialog() : openDialog()
 	}
 
 	const handleFilterSelect = (index) => {
 		const tasksFiltered = sortItems(tasks, index, DROPDOWN_ICONS)
 
-		setDialogButtonTitle(DROPDOWN_ICONS[index].title)
 		setTasks(tasksFiltered)
 		setFilterSelected(index)
 		closeDialog()
-	}
-
-	const handleShowDialog = () => {
-		if (isDialogOpen) {
-			closeDialog()
-		} else {
-			openDialog()
-		}
 	}
 
 	useEffect(() => {
@@ -67,7 +58,7 @@ export const Dropdown = () => {
 
 		document.addEventListener('keydown', handleKeyDown)
 		return () => document.removeEventListener('keydown', handleKeyDown)
-	}, [isDialogOpen, filterSelected])
+	}, [isDialogOpen])
 
 	return (
 		<div className={clsx(styles, 'dropdown', { open: isDialogOpen })}>
@@ -75,13 +66,15 @@ export const Dropdown = () => {
 				icons={[{ name: ICONS.CREATE_DOWN }, { name: ICONS.CHEVRON_DOWN }]}
 				title={`По ${dialogButtonTitle.toLowerCase()}`}
 				classes={['dialogButton']}
-				onClick={handleShowDialog}
+				onClick={handleToggleDialog}
 			/>
 
 			<dialog
 				ref={dialogRef}
 				aria-label="Выберите параметры сортировки задач"
-				className={styles.dropdownDialog}
+				className={clsx(styles, 'dropdownDialog', {
+					openDialog: isDialogOpen,
+				})}
 			>
 				<div className={styles.dropdownHeader}>
 					<Icon name={ICONS.FILTER} />
@@ -89,22 +82,14 @@ export const Dropdown = () => {
 				</div>
 
 				<ul className={styles.dropdownList}>
-					{DROPDOWN_ICONS.map(({ name, title }, index) => (
-						<li
-							key={`${name}_${index}`}
+					{DROPDOWN_ICONS.map((item, index) => (
+						<DropdownItem
+							filterSelected={filterSelected}
 							onClick={() => handleFilterSelect(index)}
-							className={clsx(
-								styles,
-								'dropdownItem',
-								filterSelected === index ? 'selected' : ''
-							)}
-						>
-							<Button
-								icons={[{ name }, { name: ICONS.CHECK }]}
-								classes={['dropdownButton']}
-								title={title}
-							/>
-						</li>
+							key={`${item.name}_${index}`}
+							index={index}
+							{...item}
+						/>
 					))}
 				</ul>
 			</dialog>
