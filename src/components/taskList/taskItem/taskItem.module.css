@@ -10,15 +10,35 @@
 	padding-right: var(--padding-xxs);
 	padding-left: var(--padding-sm);
 
+	&.loading {
+		box-shadow: var(--box-shadow-sm);
+		background-color: var(--color-neutral-100);
+	}
+
+	&.loading button {
+		visibility: visible;
+		opacity: 1;
+	}
+
 	&:focus-visible {
 		outline-color: var(--color-neutral-900);
 		box-shadow: var(--box-shadow-sm);
+	}
+
+	& button {
+		visibility: hidden;
+		opacity: 0;
 	}
 
 	@media (any-hover: hover) {
 		&:hover {
 			box-shadow: var(--box-shadow-sm);
 			background-color: var(--color-neutral-100);
+		}
+
+		&:hover button {
+			visibility: visible;
+			opacity: 1;
 		}
 	}
 }

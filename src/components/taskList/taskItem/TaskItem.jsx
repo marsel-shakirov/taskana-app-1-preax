@@ -14,11 +14,14 @@ const PRIORITY_STYLE = {
 	2: 'checkmarkThird',
 }
 
-export const TaskItem = ({ title, priority, taskIndex }) => {
+export const TaskItem = ({ id, title, priority }) => {
 	const { pendingAction, openEditorWithDelay } = useTaskEditorActions(1000)
 
 	return (
-		<li className={styles.taskItem} tabIndex={0}>
+		<li
+			className={clsx(styles, 'taskItem', { loading: pendingAction })}
+			tabIndex={0}
+		>
 			<div className={styles.taskItemWrap}>
 				<label className={styles.checkboxLabel}>
 					<input type="checkbox" className={styles.checkbox} />
@@ -30,7 +33,7 @@ export const TaskItem = ({ title, priority, taskIndex }) => {
 			</div>
 
 			<Button
-				onClick={() => openEditorWithDelay('edit', taskIndex)}
+				onClick={() => openEditorWithDelay('edit', id)}
 				isLoading={pendingAction}
 				icons={[{ name: ICONS.EDIT }]}
 				classes={['buttonEditTask']}

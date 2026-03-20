@@ -1,23 +1,23 @@
-// import { useTasks } from '@/contexts'
 import { DROPDOWN_ICONS } from '@/mock/data'
 
 import { useEffect, useRef, useState } from 'react'
 
 import { useTasks } from '@/contexts'
 
-import { clsx, sortItems } from '@/utils'
+import { clsx } from '@/utils'
 
 import { ICONS } from '@/constants'
 
-import { Button, DropdownItem, Icon } from '@/components'
+import { Button, Icon } from '@/components'
+
+import { DropdownItem } from './'
 
 import styles from './Dropdown.module.css'
 
 export const Dropdown = () => {
-	const [filterSelected, setFilterSelected] = useState(4)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-	const { tasks, setTasks } = useTasks()
+	const { filterSelected, setFilterSelected } = useTasks()
 
 	const dialogRef = useRef(null)
 
@@ -40,9 +40,6 @@ export const Dropdown = () => {
 	}
 
 	const handleFilterSelect = (index) => {
-		const tasksFiltered = sortItems(tasks, index, DROPDOWN_ICONS)
-
-		setTasks(tasksFiltered)
 		setFilterSelected(index)
 		closeDialog()
 	}

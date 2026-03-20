@@ -15,8 +15,7 @@ export const MainContainer = () => {
 			<section className={styles.mainSection}>
 				<div className={styles.mainTitleContainer}>
 					<h2 className={styles.mainTitle}>Входящие</h2>
-					{/* {tasks.length === 0 ? null : <Dropdown />} */}
-					<Dropdown />
+					{tasks.length === 0 ? null : <Dropdown />}
 				</div>
 				{tasks.length === 0 ? <TaskOrganizationStatus /> : <TaskList />}
 			</section>

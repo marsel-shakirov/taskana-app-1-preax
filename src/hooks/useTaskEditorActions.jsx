@@ -5,41 +5,65 @@ import { useEditor, useTasks } from '@/contexts'
 import { createTask, generateId } from '@/utils'
 
 export const useTaskEditorActions = (delay = 1000) => {
-	const { tasks, setTasks } = useTasks()
-	const { setEditorMode, setEditingTaskIndex } = useEditor()
+	const { setTasks } = useTasks()
+	const { setEditorMode, setEditingTaskId } = useEditor()
 	const [pendingAction, setPendingAction] = useState(null)
+
+	const closeEditor = (editor = null, id = null) => {
+		setPendingAction(null)
+		setEditorMode(editor)
+		setEditingTaskId(id)
+	}
 
 	const createTaskWithDelay = (title, priority) => {
 		if (!title) return
 		setPendingAction('create')
 		setTimeout(() => {
-			setTasks([createTask(generateId, title, priority), ...tasks])
-			setPendingAction(null)
-			setEditorMode(null)
+			setTasks((prev) => [createTask(generateId, title, priority), ...prev])
+			closeEditor()
 		}, delay)
+	}
+
+	const updateTaskWithDelay = (title, priority, id) => {
+		if (pendingAction) return
+		setPendingAction('create')
+		setTimeout(() => {
+			setTasks((prevTasks) =>
+				prevTasks.map((task) =>
+					task.id === id
+						? { ...task, title, priority, updateAt: new Date().toISOString() }
+						: task
+				)
+			)
+			closeEditor()
+		}, delay)
+	}
+
+	const deleteTask = (id) => {
+		setTasks((prev) => prev.filter((task) => task.id !== id))
+		closeEditor()
 	}
 
 	const closeEditorWithDelay = () => {
 		setPendingAction('close')
 		setTimeout(() => {
-			setPendingAction(null)
-			setEditorMode(null)
+			closeEditor()
 		}, delay)
 	}
 
-	const openEditorWithDelay = (editor = 'create', index) => {
+	const openEditorWithDelay = (editor = 'create', id) => {
 		if (pendingAction) return
 		setPendingAction('create')
 		setTimeout(() => {
-			setPendingAction(null)
-			setEditorMode(editor)
-			setEditingTaskIndex(index)
+			closeEditor(editor, id)
 		}, delay)
 	}
 
 	return {
 		pendingAction,
 		createTaskWithDelay,
+		updateTaskWithDelay,
+		deleteTask,
 		closeEditorWithDelay,
 		openEditorWithDelay,
 	}

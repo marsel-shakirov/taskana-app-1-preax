@@ -4,15 +4,15 @@ import { useState } from 'react'
 
 export const EditorProvider = ({ children }) => {
 	const [editorMode, setEditorMode] = useState(null)
-	const [editingTaskIndex, setEditingTaskIndex] = useState(null)
+	const [editingTaskId, setEditingTaskId] = useState(null)
 
 	return (
 		<EditorContext
 			value={{
 				editorMode,
-				editingTaskIndex,
+				editingTaskId,
 				setEditorMode,
-				setEditingTaskIndex,
+				setEditingTaskId,
 			}}
 		>
 			{children}

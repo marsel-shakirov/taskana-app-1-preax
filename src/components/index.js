@@ -24,12 +24,4 @@ export { Icon } from './icon/Icon'
 
 export { TaskEditor } from './taskEditor/TaskEditor.jsx'
 
-export { PrioritySelector } from './prioritySelector/PrioritySelector.jsx'
-
-export { EditorInput } from './editorInput/EditorInput.jsx'
-
 export { Dropdown } from './dropdown/Dropdown.jsx'
-
-export { DropdownItem } from './dropdownItem/DropdownItem.jsx'
-
-export { TaskItem } from './taskItem/TaskItem.jsx'
