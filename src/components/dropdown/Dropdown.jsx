@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 
 import { useTasks } from '@/contexts'
+
+import { useOutsideInteraction } from '@/hooks'
 
 import { clsx } from '@/utils'
 
@@ -17,14 +19,15 @@ export const Dropdown = () => {
 
 	const { filterSelected, setFilterSelected } = useTasks()
 
+	const dropdownRef = useRef(null)
 	const dialogRef = useRef(null)
 
 	const dialogButtonTitle = DROPDOWN_ICONS[filterSelected].title
 
-	const closeDialog = () => {
+	const closeDialog = useCallback(() => {
 		setIsDialogOpen(false)
-		setTimeout(() => dialogRef.current.close(), 200)
-	}
+		setTimeout(() => dialogRef.current?.close(), 200)
+	}, [])
 
 	const openDialog = () => {
 		dialogRef.current.show()
@@ -42,21 +45,17 @@ export const Dropdown = () => {
 		closeDialog()
 	}
 
-	useEffect(() => {
-		if (!isDialogOpen) return
-
-		const handleKeyDown = (event) => {
-			if (event.key === 'Escape') {
-				closeDialog()
-			}
-		}
-
-		document.addEventListener('keydown', handleKeyDown)
-		return () => document.removeEventListener('keydown', handleKeyDown)
-	}, [isDialogOpen])
+	useOutsideInteraction({
+		isOpen: isDialogOpen,
+		refs: [dropdownRef, dialogRef],
+		onDismiss: closeDialog,
+	})
 
 	return (
-		<div className={clsx(styles, 'dropdown', { open: isDialogOpen })}>
+		<div
+			ref={dropdownRef}
+			className={clsx(styles, 'dropdown', { open: isDialogOpen })}
+		>
 			<Button
 				icons={[
 					{ name: DROPDOWN_ICONS[filterSelected].name },
