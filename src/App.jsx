@@ -5,7 +5,7 @@ import { AppLayout } from '@/layouts'
 export const App = () => {
 	return (
 		<EditorProvider>
-			<TasksProvider isMockData={true}>
+			<TasksProvider isMockData={false}>
 				<AppLayout />
 			</TasksProvider>
 		</EditorProvider>
