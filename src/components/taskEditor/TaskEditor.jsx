@@ -69,6 +69,7 @@ export const TaskEditor = () => {
 
 	return (
 		<aside
+			inert={!isTaskEditorOpen}
 			className={clsx(styles, 'taskEditor', {
 				taskEditorOpen: isTaskEditorOpen,
 			})}
@@ -82,14 +83,12 @@ export const TaskEditor = () => {
 				<EditorInput
 					isEditMode={isEditMode}
 					formId={formId}
-					isTaskEditorOpen={isTaskEditorOpen}
 					inputRef={inputRef}
 					onChange={(e) => updateField('title', e.target.value)}
 					onClick={handleFormReset}
 					value={formState.title}
 				/>
 				<PrioritySelector
-					isTaskEditorOpen={isTaskEditorOpen}
 					priorityActive={formState.priority}
 					onClick={(index) => updateField('priority', index)}
 				/>
@@ -105,7 +104,6 @@ export const TaskEditor = () => {
 				/>
 				<Button
 					onClick={handleCloseTaskEditor}
-					isDisabled={!isTaskEditorOpen}
 					type="button"
 					isLoading={pendingAction === 'close'}
 					classes={['taskEditorButton', 'taskResetButton']}

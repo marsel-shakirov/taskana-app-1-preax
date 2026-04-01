@@ -8,7 +8,6 @@ import styles from './editorInput.module.css'
 
 export const EditorInput = ({
 	isEditMode,
-	isTaskEditorOpen,
 	inputRef,
 	onChange,
 	value,
@@ -24,7 +23,6 @@ export const EditorInput = ({
 				<label className={styles.inputLabel}>
 					<span className="visually-hidden">Название задачи</span>
 					<input
-						disabled={!isTaskEditorOpen}
 						ref={inputRef}
 						onChange={onChange}
 						name="title"

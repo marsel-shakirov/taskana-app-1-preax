@@ -6,11 +6,7 @@ import styles from './prioritySelector.module.css'
 
 const PRIORITY_ICONS = [ICONS.MINUS, ICONS.CHEVRON_TOP, ICONS.ARROW]
 
-export const PrioritySelector = ({
-	isTaskEditorOpen,
-	onClick,
-	priorityActive,
-}) => {
+export const PrioritySelector = ({ onClick, priorityActive }) => {
 	return (
 		<div className={styles.priority}>
 			<div className={styles.priorityInner}>
@@ -20,7 +16,6 @@ export const PrioritySelector = ({
 
 					return (
 						<Button
-							isDisabled={!isTaskEditorOpen}
 							key={`${element}_${index}`}
 							onClick={() => onClick(priorityIndex)}
 							icons={[{ name: element }]}

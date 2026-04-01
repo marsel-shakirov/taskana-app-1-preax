@@ -19,7 +19,7 @@ export const Header = () => {
 					icons={[{ name: ICONS.PLUS, color: '#fff' }]}
 					title="Создать"
 					classes={['createButton']}
-				></Button>
+				/>
 				<ThemeSwitcher />
 			</div>
 		</header>

@@ -13,7 +13,6 @@ export const TasksProvider = ({ children, isMockData }) => {
 		}
 	}, [isMockData])
 
-	console.log(tasks)
 	return (
 		<TasksContext
 			value={{
