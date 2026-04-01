@@ -2,5 +2,6 @@
 	display: flex;
 	row-gap: var(--gap-xs);
 	flex-direction: column;
+	padding-top: 2px;
 	padding-inline: var(--padding-md);
 }

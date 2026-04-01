@@ -192,7 +192,7 @@ src/
 
 Mock-данные находятся в [src/mocks/tasks.mock.js](/src/mocks/tasks.mock.js).
 
-Можно передать props isMockData={true}:
+Можно передать props isMockData={true}, чтобы было проще проверить работу:
 
 ```jsx
 <TasksProvider isMockData={true}>
