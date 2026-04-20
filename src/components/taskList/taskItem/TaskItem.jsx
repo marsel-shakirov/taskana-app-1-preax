@@ -18,7 +18,7 @@ export const TaskItem = ({
 	id,
 	title,
 	priority,
-	isTaskActive,
+	isActive,
 	handleChangeIndex,
 }) => {
 	const { pendingAction, openEditorWithDelay } = useTaskEditorActions(500)
@@ -31,7 +31,7 @@ export const TaskItem = ({
 	return (
 		<li
 			className={clsx(styles, 'taskItem', {
-				taskActive: isTaskActive,
+				taskActive: isActive,
 				loading: pendingAction,
 			})}
 			tabIndex={0}
