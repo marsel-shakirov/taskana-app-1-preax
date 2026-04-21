@@ -61,7 +61,7 @@
 		}
 
 		@media (any-hover: hover) {
-			&:not(:focus-visible)&:hover {
+			&:not(:focus-visible):hover {
 				border-color: var(--color-neutral-600);
 			}
 		}
