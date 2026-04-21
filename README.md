@@ -210,4 +210,4 @@ Mock-данные находятся в [src/mocks/tasks.mock.js](/src/mocks/tas
 
 ### Live server
 
-- Live Site URL **Versel**: [TaskanaApp](https://taskana-app-1-preax-done.vercel.app 'TaskanaApp')
+- Live Site URL **Versel**: [TaskanaApp](taskana-app-1-preax.vercel.app 'TaskanaApp')
